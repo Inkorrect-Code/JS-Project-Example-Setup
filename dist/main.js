@@ -1,0 +1,2 @@
+!function(){"use strict";var e;e=class{constructor(e){this.elem=e,this.elem.innerHTML="<h1>it's Alive!!!!</h1>",this.handleClick=this.handleClick.bind(this),this.elem.addEventListener("click",this.handleClick)}handleClick(){this.elem.children[0].innerText="Ouch!"}},document.addEventListener("DOMContentLoaded",(()=>{const n=document.getElementById("main");new e(n),console.log("hello world")}))}();
+//# sourceMappingURL=main.js.map
