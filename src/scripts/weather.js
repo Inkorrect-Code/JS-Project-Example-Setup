@@ -1,9 +1,15 @@
 class WeatherRenderer {
   constructor(elem) {
     this.elem = elem;
+    document.getElementById('weather-input').addEventListener('keyup', (event) => {
+      if (event.code === 'Enter') { // listens for event code for 'enter' key
+        const zipCode = event.target.value // cannot do this for button you make later 
+        this.getWeatherData(zipCode)
+      } 
+    })
+    // set up ClothingRenderer
     this.getWeatherData()
   }
-
 
   // if geo doesnt populate, have user input zip code 
   getWeatherData(zipCode = undefined) { 
