@@ -1,1 +1,6 @@
-@import "./styles/example.scss";
+* { // star means apply to all
+    font-family: Arial, Helvetica, sans-serif; // need ';' here or the code blows up
+}
+
+// hub for multiple files if you had multiple 
+@import "./styles/weather.scss"; 

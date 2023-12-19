@@ -1,3 +1,6 @@
+<!-- dozi -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +10,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
-    <title>Project Name</title>
+    <title>Outfitter</title>
   </head>
 
   <body>
-    <div id="main"></div>
+    <div id="main">
+      <!-- this is where you COULD put in the base elements, otherwise need to render dynamically thru JS in '.js' file -->
+      <!-- in frameworks, templates akin to this to be filled would be preferred, automatically done under hood -->
+
+      <div id="weather-card">
+        <img id="temperature-icon"/>
+        <div id="temperature-text"></div>
+        <div id="location-text"></div>
+        <div id="footer-temperature-container"> 
+          <div id="min-temperature-text" class="footer-temperature-text"></div>
+          <div id="max-temperature-text" class="footer-temperature-text"></div>
+        </div>
+      </div>
+    </div>
   </body>
 
 </html>

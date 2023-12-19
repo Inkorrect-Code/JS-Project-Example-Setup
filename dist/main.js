@@ -1,2 +1,90 @@
-!function(){"use strict";var e;e=class{constructor(e){this.elem=e,this.elem.innerHTML="<h1>it's Alive!!!!</h1>",this.handleClick=this.handleClick.bind(this),this.elem.addEventListener("click",this.handleClick)}handleClick(){this.elem.children[0].innerText="Ouch!"}},document.addEventListener("DOMContentLoaded",(()=>{const n=document.getElementById("main");new e(n),console.log("hello world")}))}();
-//# sourceMappingURL=main.js.map
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scripts_weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/weather */ \"./src/scripts/weather.js\");\n // noice\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const main = document.getElementById(\"main\");\n  new _scripts_weather__WEBPACK_IMPORTED_MODULE_0__[\"default\"](main);\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMiLCJtYXBwaW5ncyI6Ijs7QUFBZ0QsQ0FBQzs7QUFFakRDLFFBQVEsQ0FBQ0MsZ0JBQWdCLENBQUMsa0JBQWtCLEVBQUUsTUFBTTtFQUNoRCxNQUFNQyxJQUFJLEdBQUdGLFFBQVEsQ0FBQ0csY0FBYyxDQUFDLE1BQU0sQ0FBQztFQUM1QyxJQUFJSix3REFBZSxDQUFDRyxJQUFJLENBQUM7QUFDN0IsQ0FBQyxDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vamF2YXNjcmlwdF9wcm9qZWN0Ly4vc3JjL2luZGV4LmpzP2I2MzUiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFdlYXRoZXJSZW5kZXJlciBmcm9tIFwiLi9zY3JpcHRzL3dlYXRoZXJcIjsgLy8gbm9pY2VcblxuZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcihcIkRPTUNvbnRlbnRMb2FkZWRcIiwgKCkgPT4ge1xuICAgIGNvbnN0IG1haW4gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcIm1haW5cIik7XG4gICAgbmV3IFdlYXRoZXJSZW5kZXJlcihtYWluKTtcbn0pOyJdLCJuYW1lcyI6WyJXZWF0aGVyUmVuZGVyZXIiLCJkb2N1bWVudCIsImFkZEV2ZW50TGlzdGVuZXIiLCJtYWluIiwiZ2V0RWxlbWVudEJ5SWQiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/index.js\n");
+
+/***/ }),
+
+/***/ "./src/scripts/weather.js":
+/*!********************************!*\
+  !*** ./src/scripts/weather.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\nclass WeatherRenderer {\n  constructor(elem) {\n    this.elem = elem;\n    this.getWeatherData();\n  }\n\n  // if geo doesnt populate, have user input zip code \n  getWeatherData() {\n    let zipCode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;\n    if (!zipCode) {\n      if (navigator.geolocation) {\n        navigator.geolocation.getCurrentPosition(position => {\n          this.getWeatherDataFromAPI({\n            lat: position.coords.latitude,\n            lon: position.coords.longitude\n          });\n        });\n      } else {\n        console.error('Geolocation is not supported by this browser.'); // this shows up as red bc error\n      }\n    } else {\n      this.getWeatherDataFromAPI({\n        // input the required params for API call from clothing site\n        zipCode: zipCode,\n        countryCode: 'us' // hard coded\n      });\n    }\n  }\n  getWeatherDataFromAPI(locationData) {\n    // locationData is obj that has either zipCode OR lat/long\n    const apiKey = '5a5417f25c205e05f2bbfd938f406cb4'; // replace with actual API key ==> usually dont have the real key here but ehhhh\n    let url = `http://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=imperial`;\n    if (locationData.lat !== undefined && locationData.lon !== undefined) url += `&lat=${locationData.lat}&lon=${locationData.lon}`;else url += `&zip=${locationData.zipCode},${locationData.countryCode}`;\n    fetch(url).then(response => response.json()).then(weatherData => {\n      this.displayWeatherData(weatherData);\n      const categories = this.getCategories(weatherData);\n      // TODO: send to ClothingRenderer to manage/load api data from H&M and display \n      console.log(categories);\n    }).catch(error => console.error('Error:', error));\n  }\n  displayWeatherData(weatherData) {\n    console.log(weatherData);\n    // DOM manipulation stuff\n\n    document.getElementById('temperature-icon').src = weatherData.main.temp > 60 ? './src/images/clear.png' : './src/images/snow.png';\n    document.getElementById('temperature-text').innerText = `${Math.round(weatherData.main.temp)}°F`; // no '?' here means error will be thrown\n\n    document.getElementById('location-text').innerText = weatherData.name;\n    document.getElementById('min-temperature-text').innerHTML = `<div>Low</div><div>${Math.round(weatherData.main.temp_min)}°F</div>`;\n    document.getElementById('max-temperature-text').innerHTML = `<div>High</div><div>${Math.round(weatherData.main.temp_max)}°F</div>`;\n  }\n  getCategories(weatherData) {\n    // takes in whole weather api call\n    const categories = []; // pushing in\n\n    // add to clothing categories based on temp ranges ==> connects weather to clothes\n    const temperature = weatherData.main.temp;\n    if (temperature <= 50) {\n      categories.push(['men_jacketscoats', 'men_hoodiessweatshirts', 'men_trousers', 'men_jeans']);\n    } else if (temperature > 50 && temperature <= 60) {\n      categories.push(['men_cardigansjumpers', 'men_hoodiessweatshirts', 'men_trousers', 'men_jeans']);\n    } else if (temperature > 60 && temperature <= 70) {\n      categories.push(['men_shirts', 'men_tshirtstanks', 'men_shorts', 'men_trousers', 'men_jeans']);\n    } else {\n      categories.push(['men_tshirtstanks', 'men_shorts']);\n    }\n    return categories;\n  }\n}\n//end of class\n/* harmony default export */ __webpack_exports__[\"default\"] = (WeatherRenderer);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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VUFBVTtFQUNuQjtBQUNGO0FBQ0E7QUFDQSwrREFBZTlCLGVBQWUiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9qYXZhc2NyaXB0X3Byb2plY3QvLi9zcmMvc2NyaXB0cy93ZWF0aGVyLmpzP2RmMDAiXSwic291cmNlc0NvbnRlbnQiOlsiY2xhc3MgV2VhdGhlclJlbmRlcmVyIHtcbiAgY29uc3RydWN0b3IoZWxlbSkge1xuICAgIHRoaXMuZWxlbSA9IGVsZW07XG4gICAgdGhpcy5nZXRXZWF0aGVyRGF0YSgpXG4gIH1cblxuXG4gIC8vIGlmIGdlbyBkb2VzbnQgcG9wdWxhdGUsIGhhdmUgdXNlciBpbnB1dCB6aXAgY29kZSBcbiAgZ2V0V2VhdGhlckRhdGEoemlwQ29kZSA9IHVuZGVmaW5lZCkgeyBcbiAgICBpZiAoIXppcENvZGUpIHtcbiAgICAgIGlmIChuYXZpZ2F0b3IuZ2VvbG9jYXRpb24pIHtcbiAgICAgICAgbmF2aWdhdG9yLmdlb2xvY2F0aW9uLmdldEN1cnJlbnRQb3NpdGlvbihwb3NpdGlvbiA9PiB7XG4gICAgICAgICAgdGhpcy5nZXRXZWF0aGVyRGF0YUZyb21BUEkoIHtcbiAgICAgICAgICAgIGxhdDogcG9zaXRpb24uY29vcmRzLmxhdGl0dWRlLFxuICAgICAgICAgICAgbG9uOiBwb3NpdGlvbi5jb29yZHMubG9uZ2l0dWRlXG4gICAgICAgICAgfSlcbiAgICAgICAgfSk7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICBjb25zb2xlLmVycm9yKCdHZW9sb2NhdGlvbiBpcyBub3Qgc3VwcG9ydGVkIGJ5IHRoaXMgYnJvd3Nlci4nKTsgLy8gdGhpcyBzaG93cyB1cCBhcyByZWQgYmMgZXJyb3JcbiAgICAgIH1cbiAgICBcbiAgICAgIFxuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmdldFdlYXRoZXJEYXRhRnJvbUFQSSggeyAvLyBpbnB1dCB0aGUgcmVxdWlyZWQgcGFyYW1zIGZvciBBUEkgY2FsbCBmcm9tIGNsb3RoaW5nIHNpdGVcbiAgICAgICAgemlwQ29kZTogemlwQ29kZSxcbiAgICAgICAgY291bnRyeUNvZGU6ICd1cycgLy8gaGFyZCBjb2RlZFxuICAgICAgfSlcbiAgICB9XG4gIH1cblxuICBnZXRXZWF0aGVyRGF0YUZyb21BUEkobG9jYXRpb25EYXRhKSB7IC8vIGxvY2F0aW9uRGF0YSBpcyBvYmogdGhhdCBoYXMgZWl0aGVyIHppcENvZGUgT1IgbGF0L2xvbmdcbiAgICBjb25zdCBhcGlLZXkgPSAnNWE1NDE3ZjI1YzIwNWUwNWYyYmJmZDkzOGY0MDZjYjQnOyAvLyByZXBsYWNlIHdpdGggYWN0dWFsIEFQSSBrZXkgPT0+IHVzdWFsbHkgZG9udCBoYXZlIHRoZSByZWFsIGtleSBoZXJlIGJ1dCBlaGhoaFxuICAgIGxldCB1cmwgPSBgaHR0cDovL2FwaS5vcGVud2VhdGhlcm1hcC5vcmcvZGF0YS8yLjUvd2VhdGhlcj9hcHBpZD0ke2FwaUtleX0mdW5pdHM9aW1wZXJpYWxgO1xuICAgIGlmIChsb2NhdGlvbkRhdGEubGF0ICE9PSB1bmRlZmluZWQgJiYgbG9jYXRpb25EYXRhLmxvbiAhPT0gdW5kZWZpbmVkKSB1cmwgKz0gYCZsYXQ9JHtsb2NhdGlvbkRhdGEubGF0fSZsb249JHtsb2NhdGlvbkRhdGEubG9ufWBcbiAgICBlbHNlIHVybCArPSBgJnppcD0ke2xvY2F0aW9uRGF0YS56aXBDb2RlfSwke2xvY2F0aW9uRGF0YS5jb3VudHJ5Q29kZX1gXG5cbiAgICBmZXRjaCh1cmwpXG4gICAgICAudGhlbihyZXNwb25zZSA9PiByZXNwb25zZS5qc29uKCkpXG4gICAgICAudGhlbih3ZWF0aGVyRGF0YSA9PiB7IFxuXG4gICAgICAgIHRoaXMuZGlzcGxheVdlYXRoZXJEYXRhKHdlYXRoZXJEYXRhKVxuICAgICAgICBcbiAgICAgICAgY29uc3QgY2F0ZWdvcmllcyA9IHRoaXMuZ2V0Q2F0ZWdvcmllcyh3ZWF0aGVyRGF0YSlcbiAgICAgICAgLy8gVE9ETzogc2VuZCB0byBDbG90aGluZ1JlbmRlcmVyIHRvIG1hbmFnZS9sb2FkIGFwaSBkYXRhIGZyb20gSCZNIGFuZCBkaXNwbGF5IFxuICAgICAgICBjb25zb2xlLmxvZyhjYXRlZ29yaWVzKVxuICAgICAgfSlcbiAgICAgIC5jYXRjaChlcnJvciA9PiBjb25zb2xlLmVycm9yKCdFcnJvcjonLCBlcnJvcikpO1xuICB9XG5cbiAgZGlzcGxheVdlYXRoZXJEYXRhKHdlYXRoZXJEYXRhKSB7XG4gICAgY29uc29sZS5sb2cod2VhdGhlckRhdGEpXG4gICAgLy8gRE9NIG1hbmlwdWxhdGlvbiBzdHVmZlxuXG4gICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RlbXBlcmF0dXJlLWljb24nKS5zcmMgPSB3ZWF0aGVyRGF0YS5tYWluLnRlbXAgPiA2MCA/ICcuL3NyYy9pbWFnZXMvY2xlYXIucG5nJyA6ICcuL3NyYy9pbWFnZXMvc25vdy5wbmcnXG5cbiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndGVtcGVyYXR1cmUtdGV4dCcpLmlubmVyVGV4dCA9IGAke01hdGgucm91bmQod2VhdGhlckRhdGEubWFpbi50ZW1wKX3CsEZgIC8vIG5vICc/JyBoZXJlIG1lYW5zIGVycm9yIHdpbGwgYmUgdGhyb3duXG5cbiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9jYXRpb24tdGV4dCcpLmlubmVyVGV4dCA9IHdlYXRoZXJEYXRhLm5hbWVcblxuICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtaW4tdGVtcGVyYXR1cmUtdGV4dCcpLmlubmVySFRNTCA9IGA8ZGl2PkxvdzwvZGl2PjxkaXY+JHtNYXRoLnJvdW5kKHdlYXRoZXJEYXRhLm1haW4udGVtcF9taW4pfcKwRjwvZGl2PmBcbiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbWF4LXRlbXBlcmF0dXJlLXRleHQnKS5pbm5lckhUTUwgPSBgPGRpdj5IaWdoPC9kaXY+PGRpdj4ke01hdGgucm91bmQod2VhdGhlckRhdGEubWFpbi50ZW1wX21heCl9wrBGPC9kaXY+YFxuICB9XG5cbiAgZ2V0Q2F0ZWdvcmllcyh3ZWF0aGVyRGF0YSkgeyAvLyB0YWtlcyBpbiB3aG9sZSB3ZWF0aGVyIGFwaSBjYWxsXG4gICAgY29uc3QgY2F0ZWdvcmllcyA9IFtdOyAvLyBwdXNoaW5nIGluXG4gICAgXG4gICAgLy8gYWRkIHRvIGNsb3RoaW5nIGNhdGVnb3JpZXMgYmFzZWQgb24gdGVtcCByYW5nZXMgPT0+IGNvbm5lY3RzIHdlYXRoZXIgdG8gY2xvdGhlc1xuICAgIGNvbnN0IHRlbXBlcmF0dXJlID0gd2VhdGhlckRhdGEubWFpbi50ZW1wO1xuXG4gICAgaWYgKHRlbXBlcmF0dXJlIDw9IDUwKSB7XG4gICAgICBjYXRlZ29yaWVzLnB1c2goWydtZW5famFja2V0c2NvYXRzJywgJ21lbl9ob29kaWVzc3dlYXRzaGlydHMnLCAnbWVuX3Ryb3VzZXJzJywgJ21lbl9qZWFucyddKVxuICAgIH0gZWxzZSBpZiAodGVtcGVyYXR1cmUgPiA1MCAmJiB0ZW1wZXJhdHVyZSA8PSA2MCkge1xuICAgICAgY2F0ZWdvcmllcy5wdXNoKFsnbWVuX2NhcmRpZ2Fuc2p1bXBlcnMnLCAnbWVuX2hvb2RpZXNzd2VhdHNoaXJ0cycsICdtZW5fdHJvdXNlcnMnLCAnbWVuX2plYW5zJ10pXG4gICAgfSBlbHNlIGlmICh0ZW1wZXJhdHVyZSA+IDYwICYmIHRlbXBlcmF0dXJlIDw9IDcwKSB7XG4gICAgICBjYXRlZ29yaWVzLnB1c2goWydtZW5fc2hpcnRzJywgJ21lbl90c2hpcnRzdGFua3MnLCAnbWVuX3Nob3J0cycsICdtZW5fdHJvdXNlcnMnLCAnbWVuX2plYW5zJ10pXG4gICAgfSBlbHNlIHtcbiAgICAgIGNhdGVnb3JpZXMucHVzaChbJ21lbl90c2hpcnRzdGFua3MnLCAnbWVuX3Nob3J0cyddKVxuICAgIH1cbiAgICByZXR1cm4gY2F0ZWdvcmllcztcbiAgfVxufVxuLy9lbmQgb2YgY2xhc3NcbmV4cG9ydCBkZWZhdWx0IFdlYXRoZXJSZW5kZXJlcjtcbiJdLCJuYW1lcyI6WyJXZWF0aGVyUmVuZGVyZXIiLCJjb25zdHJ1Y3RvciIsImVsZW0iLCJnZXRXZWF0aGVyRGF0YSIsInppcENvZGUiLCJhcmd1bWVudHMiLCJsZW5ndGgiLCJ1bmRlZmluZWQiLCJuYXZpZ2F0b3IiLCJnZW9sb2NhdGlvbiIsImdldEN1cnJlbnRQb3NpdGlvbiIsInBvc2l0aW9uIiwiZ2V0V2VhdGhlckRhdGFGcm9tQVBJIiwibGF0IiwiY29vcmRzIiwibGF0aXR1ZGUiLCJsb24iLCJsb25naXR1ZGUiLCJjb25zb2xlIiwiZXJyb3IiLCJjb3VudHJ5Q29kZSIsImxvY2F0aW9uRGF0YSIsImFwaUtleSIsInVybCIsImZldGNoIiwidGhlbiIsInJlc3BvbnNlIiwianNvbiIsIndlYXRoZXJEYXRhIiwiZGlzcGxheVdlYXRoZXJEYXRhIiwiY2F0ZWdvcmllcyIsImdldENhdGVnb3JpZXMiLCJsb2ciLCJjYXRjaCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJzcmMiLCJtYWluIiwidGVtcCIsImlubmVyVGV4dCIsIk1hdGgiLCJyb3VuZCIsIm5hbWUiLCJpbm5lckhUTUwiLCJ0ZW1wX21pbiIsInRlbXBfbWF4IiwidGVtcGVyYXR1cmUiLCJwdXNoIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/scripts/weather.js\n");
+
+/***/ }),
+
+/***/ "./src/index.scss":
+/*!************************!*\
+  !*** ./src/index.scss ***!
+  \************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguc2NzcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9qYXZhc2NyaXB0X3Byb2plY3QvLi9zcmMvaW5kZXguc2Nzcz85NzQ1Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.scss\n");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
+/******/ 	__webpack_require__("./src/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.scss");
+/******/ 	
+/******/ })()
+;

@@ -1,8 +1,6 @@
-import Example from "./scripts/example";
+import WeatherRenderer from "./scripts/weather"; // noice
 
 document.addEventListener("DOMContentLoaded", () => {
     const main = document.getElementById("main");
-    // debugger;
-    new Example(main);
-    console.log("hello world");
+    new WeatherRenderer(main);
 });
