@@ -4,13 +4,21 @@
 
 
 #weather-card {
-    margin: 10px;
-    padding: 20px 25px;
-    border-radius: 22px;
-    box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: 0.2);
-    background-color: grey;
+    background: linear-gradient(to right, #5fdcff, #1b3684);
     text-align: center;
+}
 
+// #weather-input { // text box
+//     width: 80px;
+//     display: flex;
+//     position: absolute;
+//         top: 5%;
+//         right: 40%;
+//         transform: translate(-50%, -50%);
+// }
+
+#search-button {
+    background-color: rgb(121, 119, 119);
 }
 
 #temperature-icon {
@@ -19,7 +27,6 @@
 
 #temperature-text {
     font-size: 3rem; // emphemeral unit, reference default is 16px
-
 }
 
 #location-text {
@@ -33,4 +40,3 @@
     justify-content: space-evenly;
     font-size: 1.2rem;
 }
-

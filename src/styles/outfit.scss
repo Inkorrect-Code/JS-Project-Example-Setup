@@ -1,0 +1,54 @@
+#outfit-card {
+    background: linear-gradient(to right, #9d9fa8, #525b5e);
+    flex: 1;
+}
+
+#toggle-button-container {
+    text-align: center;
+    #toggle-button {
+        font-size: 1.2rem;
+        background-color: rgb(121, 119, 119);
+        
+    }
+}
+
+.category-item {
+    display: flex;
+    flex-direction: row;
+    // justify-content: left;
+    margin: 10px;
+}
+
+.category-icon-container {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+
+    .category-icon-text {
+        font-size: 1.2rem;
+        // margin-bottom: 5px;
+        width: 100px;
+    }
+
+    img.category-icon-img {
+        height: 64px;
+        cursor: pointer;
+
+    } 
+}
+
+.clothing-item-container {
+    text-align: center;
+    flex: 1;
+
+    img.clothing-img {
+        height: 128px;
+        width: auto;
+        border-radius: 64px;
+    }
+
+    .clothing-text {
+        font-size: 1.2rem;
+    }
+}

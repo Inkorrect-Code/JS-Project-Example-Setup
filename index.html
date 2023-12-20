@@ -11,26 +11,47 @@
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
     <title>Outfitter</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/stray_clothing_logo_design.jpg">
   </head>
 
   <body>
-    <div id="main">
+    <div id="main" class="container">
       <!-- this is where you COULD put in the base elements, otherwise need to render dynamically thru JS in '.js' file -->
       <!-- in frameworks, templates akin to this to be filled would be preferred, automatically done under hood -->
 
-      <div id="weather-card">
-        <div id="weather-input-container">
-          <input type="text" id="weather-input"/>  
-        </div>
-        <img id="temperature-icon"/>
-        <div id="temperature-text"></div>
-        <div id="location-text"></div>
-        <div id="footer-temperature-container"> 
-          <div id="min-temperature-text" class="footer-temperature-text"></div>
-          <div id="max-temperature-text" class="footer-temperature-text"></div>
-        </div>
-      </div>
-    </div>
+
+      <div class="flex-container">
+        <div class="column">
+          <div id="weather-card" class="card"> <!-- applies root/general styling of card class -->
+            <div id="weather-input-container">
+              <input type="search" id="weather-input"/>
+              <button type="submit" id="search-button">Search</button>
+            </div>
+            <img id="temperature-icon"/>
+            <div id="temperature-text"></div>
+            <div id="location-text"></div>
+            <div id="footer-temperature-container"> 
+              <div id="min-temperature-text" class="footer-temperature-text"></div>
+              <div id="max-temperature-text" class="footer-temperature-text"></div>
+            </div>
+          </div> <!-- end of weather card -->
+          
+          <div id="outfit-card" class="card">
+            <div id="toggle-button-container">
+              <button id="toggle-button">MEN</button>
+            </div>
+            <div id="outfit-categories-container"></div>
+          </div>
+        </div> <!-- end of column 1 -->
+        <div class="column"> 
+          <div id="clothing-card" class="card">
+            <ul id="clothing-list"></ul>
+          </div>
+        </div> <!-- end of column 2 -->
+      </div> <!-- end of flex container -->
+    </div> <!-- end of container -->
+
+    <a href="https://github.com/Inkorrect-Code/Outfit-Coordinator.git"><img id="github" src="assets/images/github_drawn_outline.png"></a>
   </body>
 
 </html>

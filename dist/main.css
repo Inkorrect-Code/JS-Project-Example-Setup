@@ -5,13 +5,69 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#weather-card {
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
   margin: 10px;
   padding: 20px 25px;
   border-radius: 22px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-  background-color: grey;
+}
+
+.container {
+  width: 100%;
+  height: calc(100vh - 240px);
+  margin: 120px auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.flex-container .column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+#github {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+}
+
+#weather-card {
+  background: linear-gradient(to right, #5fdcff, #1b3684);
   text-align: center;
+}
+
+#search-button {
+  background-color: rgb(121, 119, 119);
 }
 
 #temperature-icon {
@@ -31,5 +87,78 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  font-size: 1.2rem;
+}
+
+#outfit-card {
+  background: linear-gradient(to right, #9d9fa8, #525b5e);
+  flex: 1;
+}
+
+#toggle-button-container {
+  text-align: center;
+}
+#toggle-button-container #toggle-button {
+  font-size: 1.2rem;
+  background-color: rgb(121, 119, 119);
+}
+
+.category-item {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.category-icon-container {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.category-icon-container .category-icon-text {
+  font-size: 1.2rem;
+  width: 100px;
+}
+.category-icon-container img.category-icon-img {
+  height: 64px;
+  cursor: pointer;
+}
+
+.clothing-item-container {
+  text-align: center;
+  flex: 1;
+}
+.clothing-item-container img.clothing-img {
+  height: 128px;
+  width: auto;
+  border-radius: 64px;
+}
+.clothing-item-container .clothing-text {
+  font-size: 1.2rem;
+}
+
+#clothing-card {
+  height: calc(100vh - 300px);
+}
+
+#clothing-list {
+  overflow-y: auto;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clothing-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.clothing-item img.clothing-img {
+  height: 128px;
+  width: auto;
+  border-radius: 64px;
+}
+.clothing-item .clothing-text {
   font-size: 1.2rem;
 }

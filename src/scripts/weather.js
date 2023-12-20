@@ -1,14 +1,25 @@
+import OutfitRenderer from "./outfit"
+
 class WeatherRenderer {
-  constructor(elem) {
-    this.elem = elem;
+  constructor() {
+    this.initEventListeners()
+    this.outfitRenderer = new OutfitRenderer()
+    this.getWeatherData()
+  }
+
+  initEventListeners() {
     document.getElementById('weather-input').addEventListener('keyup', (event) => {
       if (event.code === 'Enter') { // listens for event code for 'enter' key
         const zipCode = event.target.value // cannot do this for button you make later 
-        this.getWeatherData(zipCode)
+        if (this.isValidZipCode(zipCode))
+          this.getWeatherData(zipCode)
       } 
     })
-    // set up ClothingRenderer
-    this.getWeatherData()
+    document.getElementById('search-button').addEventListener('click', () => {
+      const zipCode = document.getElementById('weather-input').value
+      if (this.isValidZipCode(zipCode))
+        this.getWeatherData(zipCode)
+    })
   }
 
   // if geo doesnt populate, have user input zip code 
@@ -43,11 +54,11 @@ class WeatherRenderer {
     fetch(url)
       .then(response => response.json())
       .then(weatherData => { 
-
+        // dozi bad
         this.displayWeatherData(weatherData)
-        
+
         const categories = this.getCategories(weatherData)
-        // TODO: send to ClothingRenderer to manage/load api data from H&M and display 
+        this.outfitRenderer.displayCategories(categories)
         console.log(categories)
       })
       .catch(error => console.error('Error:', error));
@@ -56,8 +67,7 @@ class WeatherRenderer {
   displayWeatherData(weatherData) {
     console.log(weatherData)
     // DOM manipulation stuff
-
-    document.getElementById('temperature-icon').src = weatherData.main.temp > 60 ? './src/images/clear.png' : './src/images/snow.png'
+    document.getElementById('temperature-icon').src = weatherData.main.temp > 60 ? '/assets/images/clear.png' : '/assets/images/snow.png'
 
     document.getElementById('temperature-text').innerText = `${Math.round(weatherData.main.temp)}°F` // no '?' here means error will be thrown
 
@@ -68,21 +78,36 @@ class WeatherRenderer {
   }
 
   getCategories(weatherData) { // takes in whole weather api call
-    const categories = []; // pushing in
     
+    const mensCategories = [];
+    const womensCategories = [];
+
     // add to clothing categories based on temp ranges ==> connects weather to clothes
     const temperature = weatherData.main.temp;
 
-    if (temperature <= 50) {
-      categories.push(['men_jacketscoats', 'men_hoodiessweatshirts', 'men_trousers', 'men_jeans'])
-    } else if (temperature > 50 && temperature <= 60) {
-      categories.push(['men_cardigansjumpers', 'men_hoodiessweatshirts', 'men_trousers', 'men_jeans'])
+    if (temperature <= 40) { // important that this is not an array ==> output later is arr
+      // TODO: add dresses and skirts
+      mensCategories.push('men_jacketscoats', 'men_hoodiessweatshirts', 'men_shirts', 'men_trousers', 'men_jeans')
+      womensCategories.push('ladies_jacketscoats', 'ladies_hoodiessweatshirts', 'ladies_trousers', 'ladies_jeans')
+
+    } else if (temperature > 40 && temperature <= 60) {
+      mensCategories.push('men_cardigansjumpers', 'men_hoodiessweatshirts', 'men_shirts', 'men_trousers', 'men_jeans')
+      womensCategories.push('ladies_cardigansjumpers', 'ladies_hoodiessweatshirts', 'ladies_tops', 'ladies_shirtsblouses', 'ladies_trousers', 'ladies_jeans', 'ladies_dresses')
+
     } else if (temperature > 60 && temperature <= 70) {
-      categories.push(['men_shirts', 'men_tshirtstanks', 'men_shorts', 'men_trousers', 'men_jeans'])
+      mensCategories.push('men_shirts', 'men_tshirtstanks', 'men_shorts', 'men_trousers', 'men_jeans')
+      womensCategories.push('ladies_tops', 'ladies_shirtsblouses', 'ladies_trousers', 'ladies_jeans', 'ladies_skirts', 'ladies_dresses')
+
     } else {
-      categories.push(['men_tshirtstanks', 'men_shorts'])
+      mensCategories.push('men_tshirtstanks', 'men_shorts')
+      womensCategories.push('ladies_tops', 'ladies_shirtsblouses', 'ladies_skirts', 'ladies_shorts', 'ladies_dresses')
+
     }
-    return categories;
+    return {men: mensCategories, women: womensCategories};
+  }
+
+  isValidZipCode(zipCode) {
+    return zipCode?.length == 5 && /^\d+$/.test(zipCode)
   }
 }
 //end of class
