@@ -99,7 +99,7 @@ Now you have a custom outfit for today's weather!
 - Allows users to switch between men's and women's clothing suggestions.
 
     ```javascript
-        initEventListeners() {
+    initEventListeners() {
         document.getElementById('toggle-button').addEventListener('click', () => {
             this.displayedCategories = this.displayedCategories === 'men' ? 'women' : 'men'
             document.getElementById('toggle-button').innerText = this.displayedCategories.toUpperCase()
