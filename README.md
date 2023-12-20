@@ -1,7 +1,8 @@
 # Outfitter
 
-## Overview
-Outfitter is a JavaScript-based data visualization that assists in coordinating outfits based on the weather conditions of a desired location. Geolocation is used to default to the user's current location, and further allows input of any valid US zip code to choose a different location. From this point, a sex is specified and appropriate clothing categories will be available to select, allowing the user to pick specific clothing items of various styles from the list that appears.
+<a href="https://inkorrect-code.github.io/Outfitter/">Outfitter</a> is a JavaScript-based data visualization that assists in coordinating outfits based on the weather conditions of a desired location. Geolocation is used to default to the user's current location, and further allows input of any valid US zip code to choose a different location. From this point, a sex is specified and appropriate clothing categories will be available to select, allowing the user to pick specific clothing items of various styles from the list that appears.
+
+![image](image-1.png)
 
 ## Instructions
 Please enter a valid US zipcode into the search box to display the current weather conditions in that area.
@@ -118,9 +119,6 @@ Now you have a custom outfit for today's weather!
 3. Run `npm install` to install all the dependencies.
 4. Run `npm start` to start the development server.
 5. Open your browser and navigate to `http://localhost:8080/` (or the port number shown in your terminal).
-
-## Usage
-Enter your location or a US zip code in the search box and press Enter. The application will display the current weather conditions and suggest appropriate clothing items. You can switch between men's and women's clothing suggestions by clicking the toggle button.
 
 ## Future Improvements
 - Add more clothing categories and options.
