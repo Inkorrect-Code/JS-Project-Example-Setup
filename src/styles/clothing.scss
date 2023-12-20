@@ -27,16 +27,20 @@
     }
 
     .clothing-button {
-      position: relative;
-      right: 10px;
-      width: 80px; // adjust as needed
-      height: 50px; // adjust as needed
-      background-color: rgb(121, 119, 119);
-      font-size: 1.2rem;
+        position: relative;
+        right: 0px;
+        margin-left: auto;
+        width: 80px; // adjust as needed
+        height: 50px; // adjust as needed
+        background-color: rgb(121, 119, 119);
+        font-size: 1.0rem;
+        border-radius: 20px;
+        cursor: pointer;
     }
 
     .clothing-text {
         font-size: 1.2rem;
+        padding-right: 10px;
     }
 }
 

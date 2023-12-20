@@ -23,13 +23,17 @@ html, body {
   margin: 120px auto;
 }
 
+#instructions {
+  color: grey;
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 .flex-container .column {
-  flex: 1;
+  width: 1200px;
   display: flex;
   flex-direction: column;
 }
@@ -54,10 +58,27 @@ html, body {
     max-width: 1140px;
   }
 }
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1340px;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1540px;
+  }
+}
 #github {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  width: 50px;
+}
+
+#donate {
+  position: absolute;
+  bottom: 10px;
+  right: 70px;
   width: 50px;
 }
 
@@ -68,6 +89,8 @@ html, body {
 
 #search-button {
   background-color: rgb(121, 119, 119);
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 #temperature-icon {
@@ -101,6 +124,12 @@ html, body {
 #toggle-button-container #toggle-button {
   font-size: 1.2rem;
   background-color: rgb(121, 119, 119);
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+}
+#toggle-button-container #toggle-button:hover {
+  cursor: pointer;
 }
 
 .category-item {
@@ -161,12 +190,16 @@ html, body {
 }
 .clothing-item .clothing-button {
   position: relative;
-  right: 10px;
+  right: 0px;
+  margin-left: auto;
   width: 80px;
   height: 50px;
   background-color: rgb(121, 119, 119);
-  font-size: 1.2rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
 }
 .clothing-item .clothing-text {
   font-size: 1.2rem;
+  padding-right: 10px;
 }

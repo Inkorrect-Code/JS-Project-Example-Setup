@@ -8,7 +8,14 @@
     #toggle-button {
         font-size: 1.2rem;
         background-color: rgb(121, 119, 119);
+        border-radius: 20px;
+        width: 100px;
+        height: 40px;
         
+    }
+
+    #toggle-button:hover {
+        cursor: pointer;
     }
 }
 
@@ -49,5 +56,6 @@
 
     .clothing-text {
         font-size: 1.2rem;
+        // padding-right: 10px;
     }
 }

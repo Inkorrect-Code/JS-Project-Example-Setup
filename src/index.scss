@@ -1,5 +1,6 @@
 * { // star means apply to all
     font-family: Arial, Helvetica, sans-serif; // need ';' here or the code blows up
+    // background-color:#000000;
 }
 
 html, body {
@@ -20,6 +21,17 @@ html, body {
     margin: 120px auto; // vert, hori 
 }
 
+// .instructions-container { // instructions
+//     position: absolute;
+//     top: 50%;
+//     left: 0;
+//     transform: translateX(-50%);
+// }
+
+#instructions {
+    color: grey;
+}
+
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -27,7 +39,8 @@ html, body {
     // padding: 40px;
 
     .column {
-        flex: 1; // helps to scale the UI to fractions of the total container space
+        // flex: 1; // helps to scale the UI to fractions of the total container space
+        width: 1200px;
         display: flex;
         flex-direction: column;
     }
@@ -49,12 +62,29 @@ html, body {
     .container {max-width: 1140px;}
 }
 
+@media (min-width: 1400px) {
+    .container {max-width: 1340px;}
+}
+
+@media (min-width: 1600px) {
+    .container {max-width: 1540px;}
+}
+
 #github { // github icon
     position: absolute;
     bottom: 10px; // move icon 2/3 up the page
     right: 10px;
     width: 50px; // adjust as needed
 }
+
+#donate {
+    position: absolute;
+    bottom: 10px; // move icon 2/3 up the page
+    right: 70px;
+    width: 50px; // adjust as needed
+}
+
+
 
 // hub for multiple files if you had multiple 
 @import "./styles/weather.scss";

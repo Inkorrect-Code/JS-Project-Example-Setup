@@ -67,7 +67,7 @@ class WeatherRenderer {
   displayWeatherData(weatherData) {
     console.log(weatherData)
     // DOM manipulation stuff
-    document.getElementById('temperature-icon').src = weatherData.main.temp > 60 ? '/assets/images/clear.png' : '/assets/images/snow.png'
+    document.getElementById('temperature-icon').src = weatherData.main.temp > 60 ? '/assets/images/clear.png' : '/assets/images/mist.png'
 
     document.getElementById('temperature-text').innerText = `${Math.round(weatherData.main.temp)}°F` // no '?' here means error will be thrown
 
