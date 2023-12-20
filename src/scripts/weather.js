@@ -59,13 +59,11 @@ class WeatherRenderer {
 
         const categories = this.getCategories(weatherData)
         this.outfitRenderer.displayCategories(categories)
-        console.log(categories)
       })
       .catch(error => console.error('Error:', error));
   }
 
   displayWeatherData(weatherData) {
-    console.log(weatherData)
     // DOM manipulation stuff
     document.getElementById('temperature-icon').src = weatherData.main.temp > 60 ? '/assets/images/clear.png' : '/assets/images/mist.png'
 

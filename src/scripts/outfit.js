@@ -27,8 +27,6 @@ class OutfitRenderer {
             document.getElementById('toggle-button').innerText = this.displayedCategories.toUpperCase()
             this.displayCategories(this.categories)
         })
-        
-
     }
 
     displayCategories(categories) {
