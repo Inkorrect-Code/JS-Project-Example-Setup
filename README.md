@@ -13,7 +13,8 @@ Click the clothing icons to show a list of that clothing category to select and 
 Now you have a custom outfit for today's weather!
 
 ## Wireframe
-![alt text](https://gyazo.com/4f57cab0b36e94ccd98027ded55b7666)
+![image](https://github.com/Inkorrect-Code/Outfitter/assets/148132042/def4f079-bda1-4a57-944f-0d6a8e43741d)
+
 
 ## Features
 - Fetches real-time weather data based on user's location or input.
