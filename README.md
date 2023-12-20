@@ -121,9 +121,13 @@ Now you have a custom outfit for today's weather!
 5. Open your browser and navigate to `http://localhost:8080/` (or the port number shown in your terminal).
 
 ## Future Improvements
-- Add more clothing categories and options.
+- Add more clothing categories and options, such as accessories.
 - Improve the user interface and experience.
 - Add user accounts and save preferred outfits.
+- Add a visual mannequin to display clothing categories selected.
+- Add more weather information such as humidity and wind patterns.
+- Add option to remove selected items, not just replace them.
+- Remove repetetive categories when one is selected (e.g. jeans category disappears if pants are selected).
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
