@@ -79,7 +79,6 @@ class OutfitRenderer {
     }
 
     addClothingItem(category, clothingItem) {
-        console.log('Dozi', clothingItem, category) //
         const clothingItemContainerElem = document.getElementById(category) // searching to get from the DOM
         clothingItemContainerElem.innerHTML = ''
 

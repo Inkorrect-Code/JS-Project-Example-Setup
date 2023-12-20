@@ -1,6 +1,7 @@
 #clothing-card {
     height: calc(100vh - 300px); // to remove any scrolling of the page
     
+    
 }
 
 #clothing-list {  // can be nested
@@ -9,6 +10,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    
 }
 
 .clothing-item {
@@ -23,7 +26,17 @@
         border-radius: 64px;
     }
 
+    .clothing-button {
+      position: relative;
+      right: 10px;
+      width: 80px; // adjust as needed
+      height: 50px; // adjust as needed
+      background-color: rgb(121, 119, 119);
+      font-size: 1.2rem;
+    }
+
     .clothing-text {
         font-size: 1.2rem;
     }
 }
+

@@ -159,6 +159,14 @@ html, body {
   width: auto;
   border-radius: 64px;
 }
+.clothing-item .clothing-button {
+  position: relative;
+  right: 10px;
+  width: 80px;
+  height: 50px;
+  background-color: rgb(121, 119, 119);
+  font-size: 1.2rem;
+}
 .clothing-item .clothing-text {
   font-size: 1.2rem;
 }
