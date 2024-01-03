@@ -1,7 +1,7 @@
 class ClothingRenderer {
     constructor(outfitRenderer) {
         this.outfitRenderer = outfitRenderer
-
+        this.addedCategories = {}
     }
 
     getClothingDataFromAPI(category) { 
@@ -51,6 +51,7 @@ class ClothingRenderer {
         clothingButtonElem.innerText = 'Try On'
         clothingButtonElem.addEventListener('click', () => {
             this.outfitRenderer.addClothingItem(this.category, clothingItem)
+            this.addedCategories[this.category] = true
         })
         clothingElem.appendChild(clothingButtonElem)
     }

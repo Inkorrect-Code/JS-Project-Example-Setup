@@ -74,6 +74,15 @@ class OutfitRenderer {
         clothingItemContainerElem.id = category
         categoryElem.appendChild(clothingItemContainerElem)
 
+        // TODO make remove clothing buttons only render if an item for the category was selected
+        if (!this.clothingRenderer.addedCategories[category]) {
+            const removeButtonElem = document.createElement('button')
+            removeButtonElem.innerText = 'Remove'
+            removeButtonElem.addEventListener('click', () => {
+                clothingItemContainerElem.innerHTML = ''
+            })
+            categoryElem.appendChild(removeButtonElem)
+        }
     }
 
     addClothingItem(category, clothingItem) {
@@ -89,6 +98,8 @@ class OutfitRenderer {
         clothingTextElem.classList.add('clothing-text')
         clothingTextElem.innerText = clothingItem.name
         clothingItemContainerElem.appendChild(clothingTextElem)
+
+
     }
 
 }

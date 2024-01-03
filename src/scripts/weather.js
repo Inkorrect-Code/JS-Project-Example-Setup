@@ -9,7 +9,7 @@ class WeatherRenderer {
 
   initEventListeners() {
     document.getElementById('weather-input').addEventListener('keyup', (event) => {
-      if (event.code === 'Enter') { // listens for event code for 'enter' key
+      if (event.code === 'Enter') { // listens for event of 'enter' key press
         const zipCode = event.target.value // cannot do this for button you make later 
         if (this.isValidZipCode(zipCode))
           this.getWeatherData(zipCode)
@@ -22,7 +22,7 @@ class WeatherRenderer {
     })
   }
 
-  // if geo doesnt populate, have user input zip code 
+  // if geolocation doesn't populate, have user input zip code 
   getWeatherData(zipCode = undefined) { 
     if (!zipCode) {
       if (navigator.geolocation) {
@@ -46,7 +46,7 @@ class WeatherRenderer {
   }
 
   getWeatherDataFromAPI(locationData) { // locationData is obj that has either zipCode OR lat/long
-    const apiKey = '5a5417f25c205e05f2bbfd938f406cb4'; // replace with actual API key ==> usually dont have the real key here but ehhhh
+    const apiKey = '5a5417f25c205e05f2bbfd938f406cb4'; // usually dont have the real key here but ehhhh
     let url = `http://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=imperial`;
     if (locationData.lat !== undefined && locationData.lon !== undefined) url += `&lat=${locationData.lat}&lon=${locationData.lon}`
     else url += `&zip=${locationData.zipCode},${locationData.countryCode}`
