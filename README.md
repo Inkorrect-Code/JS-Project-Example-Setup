@@ -1,6 +1,6 @@
 # Outfitter
 
-<a href="https://inkorrect-code.github.io/Outfitter/">Outfitter</a> is a JavaScript-based data visualization that assists in coordinating outfits based on the weather conditions of a desired location. Geolocation is used to default to the user's current location, and further allows input of any valid US zip code to choose a different location. From this point, a sex is specified and appropriate clothing categories will be available to select, allowing the user to pick specific clothing items of various styles from the list that appears.
+<a href="https://inkorrect-code.github.io/Outfitter/">Outfitter</a> is a JavaScript-based data visualization that assists the user in coordinating outfits based on the weather conditions of a desired location. Geolocation is used to default to the user's current location, and further allows input of any valid US zip code to choose a different location. From this point, a sex is specified and appropriate clothing categories will be available to select, allowing the user to pick specific clothing items of various styles from the list that appears.
 
 ![image](image-1.png)
 
